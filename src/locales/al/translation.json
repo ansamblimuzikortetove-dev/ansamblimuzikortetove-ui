@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Ballina",
+    "about": "Rreth Nesh",
+    "events": "Eventet",
+    "upcomingEvents": "Evente t\u00eb Ardhshme",
+    "past": "Evente t\u00eb Kaluara",
+    "reports": "Raporte",
+    "gallery": "Galeria",
+    "contact": "Kontakti",
+    "language": "Gjuha"
+  },
+  "hero": {
+    "title": "P\u00ebrjetoni Simfonin\u00eb",
+    "subtitle": "Projekt modern filarmonie me React + Tailwind. S\u00eb shpejti lidhje me Strapi.",
+    "ctaPrimary": "Bli Bileta",
+    "ctaSecondary": "M\u00ebso M\u00eb Shum\u00eb"
+  },
+  "home": {
+    "upcoming": "Ngjarjet Kryesore",
+    "galleryPreview": "Paraqitja e Galeris\u00eb",
+    "ctaTitle": "Bashkohuni n\u00eb Koncertin Ton\u00eb",
+    "ctaText": "B\u00ebhuni pjes\u00eb e nj\u00eb nate t\u00eb paharrueshme. Rezervoni sot.",
+    "ctaBtn": "Rezervo Bileta"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "subtitle": "Zgjidh nj\u00eb kategori. Klikimi hap nj\u00eb dritare me foto vet\u00ebm nga ajo kategori."
+  },
+  "reports": {
+    "title": "Raporte Financiare",
+    "subtitle": "T\u00eb dh\u00ebna provuese \u2014 z\u00ebvend\u00ebsoni me Strapi.",
+    "year": "Viti",
+    "income": "T\u00eb ardhura",
+    "expenses": "Shpenzime",
+    "surplus": "Tepric\u00eb"
+  }
+}

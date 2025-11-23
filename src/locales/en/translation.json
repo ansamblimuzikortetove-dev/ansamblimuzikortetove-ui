@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "events": "Events",
+    "upcomingEvents": "Upcoming Events",
+    "past": "Past Events",
+    "reports": "Reports",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Experience the Symphony",
+    "subtitle": "A bold, modern philharmonic starter built with React + Tailwind. Data via Strapi soon.",
+    "ctaPrimary": "Get Tickets",
+    "ctaSecondary": "Learn More"
+  },
+  "home": {
+    "upcoming": "Upcoming Highlights",
+    "galleryPreview": "Gallery Preview",
+    "ctaTitle": "Join Our Next Concert",
+    "ctaText": "Be part of a night to remember. Reserve your seat today.",
+    "ctaBtn": "Reserve Tickets"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Select a category to view images. Clicking an image opens a fullscreen slider limited to that category."
+  },
+  "reports": {
+    "title": "Financial Reports",
+    "subtitle": "Dummy data \u2014 replace with Strapi collections later.",
+    "year": "Year",
+    "income": "Income",
+    "expenses": "Expenses",
+    "surplus": "Surplus"
+  }
+}
