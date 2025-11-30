@@ -170,7 +170,7 @@ export default function Events() {
         <section className="container-max py-12 space-y-10">
             {/* HEADER + YEAR SELECT */}
             <div className="flex justify-between items-center mb-8 px-2">
-                <h1 className="h-serif text-3xl font-bold text-accent animate-fadeDown">
+                <h1 className="text-3xl font-bold text-accent animate-fadeDown">
                     {t("events.title")}
                 </h1>
 
@@ -217,7 +217,7 @@ export default function Events() {
                             className="w-full flex justify-between items-center px-6 py-4
                                        hover:bg-white/5 transition group"
                         >
-                            <span className="h-serif text-xl font-medium group-hover:text-accent transition">
+                            <span className="text-xl font-medium group-hover:text-accent transition">
                                 {monthLabel(month, t)} {year}
                             </span>
 

@@ -306,7 +306,7 @@ export default function Gallery() {
         <section className="container-max py-12 space-y-10">
             {/* FILTERS */}
             <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-                <h1 className="h-serif text-3xl font-bold text-accent">
+                <h1 className="text-3xl font-bold text-accent">
                     {t("gallery.title")}
                 </h1>
 
