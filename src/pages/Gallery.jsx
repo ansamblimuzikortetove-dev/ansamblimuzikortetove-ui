@@ -27,15 +27,16 @@ function getUrl(u) {
     return `${base}${u}`;
 }
 
-function monthLabel(month) {
-    return new Date(2025, month - 1, 1).toLocaleDateString(undefined, {
+function monthLabel(month, t) {
+    const monthName = new Date(2025, month - 1, 1).toLocaleDateString(undefined, {
         month: "long",
     });
+    return t(`gallery.months.${monthName.toLowerCase()}`, monthName);
 }
 
 function getUtcMonthRange(year, month) {
     const start = new Date(Date.UTC(year, month - 1, 1));
-    const end = new Date(Date.UTC(year, month, 0, 23, 59, 59, 999)); // full last day
+    const end = new Date(Date.UTC(year, month, 0, 23, 59, 59, 999));
     return {
         start: start.toISOString(),
         end: end.toISOString(),
@@ -120,7 +121,7 @@ function PanelImages({ images, onOpen }) {
 /* -------------------- MAIN COMPONENT -------------------- */
 
 export default function Gallery() {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const locale = i18n.language || "en";
 
     const currentYear = new Date().getFullYear();
@@ -132,7 +133,7 @@ export default function Gallery() {
     const [loadingMonths, setLoadingMonths] = useState(true);
 
     const [year, setYear] = useState(currentYear);
-    const [month, setMonth] = useState(0); // 0 = ALL MONTHS
+    const [month, setMonth] = useState(0);
 
     const [events, setEvents] = useState([]);
     const [page, setPage] = useState(1);
@@ -147,14 +148,13 @@ export default function Gallery() {
     const sentinelRef = useRef(null);
     const isFetching = useRef(false);
 
-    /* -------------------- LOAD YEARS (LOCALE AWARE) -------------------- */
+    /* -------------------- LOAD YEARS -------------------- */
 
     useEffect(() => {
         let mounted = true;
 
         async function loadYears() {
             try {
-                // extra arg "locale" is safe even if eventService ignores it (JS)
                 const years = await fetchTestEventYears(locale);
 
                 if (mounted && years.length > 0) {
@@ -169,12 +169,10 @@ export default function Gallery() {
 
         loadYears();
 
-        return () => {
-            mounted = false;
-        };
+        return () => (mounted = false);
     }, [locale]);
 
-    /* -------------------- LOAD MONTHS (LOCALE AWARE) -------------------- */
+    /* -------------------- LOAD MONTHS -------------------- */
 
     useEffect(() => {
         if (!year) return;
@@ -195,18 +193,15 @@ export default function Gallery() {
 
         loadMonths();
 
-        return () => {
-            mounted = false;
-        };
+        return () => (mounted = false);
     }, [year, locale]);
 
-    /* -------------------- FETCH EVENTS (KEEPS INFINITE SCROLL) -------------------- */
+    /* -------------------- FETCH EVENTS -------------------- */
 
     const loadEvents = useCallback(async () => {
         if (isFetching.current || !hasMore) return;
         isFetching.current = true;
 
-        // Build filters with locale awareness
         let filters = {
             locale: { $eq: locale },
         };
@@ -215,10 +210,7 @@ export default function Gallery() {
             const { start, end } = getUtcMonthRange(year, month);
             filters = {
                 locale: { $eq: locale },
-                date: {
-                    $gte: start,
-                    $lte: end,
-                },
+                date: { $gte: start, $lte: end },
             };
         } else {
             filters = {
@@ -264,12 +256,11 @@ export default function Gallery() {
         isFetching.current = false;
     }, [page, hasMore, year, month, locale]);
 
-    // Run loader when page changes / filters change
     useEffect(() => {
         loadEvents();
     }, [loadEvents]);
 
-    /* -------------------- RESET WHEN FILTERS / LOCALE CHANGE -------------------- */
+    /* -------------------- RESET WHEN FILTERS CHANGE -------------------- */
 
     useEffect(() => {
         setEvents([]);
@@ -315,38 +306,39 @@ export default function Gallery() {
         <section className="container-max py-12 space-y-10">
             {/* FILTERS */}
             <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-                <h1 className="h-serif text-3xl font-bold text-accent">Gallery</h1>
+                <h1 className="h-serif text-3xl font-bold text-accent">
+                    {t("gallery.title")}
+                </h1>
 
                 <div className="flex items-center gap-3">
                     {/* YEAR */}
                     <SelectInput
-                        label="Year"
+                        label={t("gallery.year")}
                         value={year}
                         onChange={(e) => {
                             const y = Number(e.target.value);
                             setYear(y);
                             setMonth(0);
                         }}
-                        loading={loadingYears}          // NEW ✔
+                        loading={loadingYears}
                         options={yearOptions.map((y) => ({ label: y, value: y }))}
-                        placeholder="Select year"
+                        placeholder={t("gallery.selectYear")}
                     />
-
 
                     {/* MONTH */}
                     <SelectInput
-                        label="Month"
+                        label={t("gallery.month")}
                         value={month}
                         onChange={(e) => setMonth(Number(e.target.value))}
-                        loading={loadingMonths}         // NEW ✔
+                        loading={loadingMonths}
                         options={[
-                            { label: "All Months", value: 0 },
+                            { label: t("gallery.allMonths"), value: 0 },
                             ...monthOptions.map((m) => ({
-                                label: monthLabel(m),
+                                label: monthLabel(m, t),
                                 value: m,
                             })),
                         ]}
-                        placeholder="Select month"
+                        placeholder={t("gallery.selectMonth")}
                     />
 
                 </div>
@@ -379,9 +371,11 @@ export default function Gallery() {
                                         })}
                                     </span>
                                     <span className="opacity-50">•</span>
-                                    <span>{ev.location || "Unknown Location"}</span>
+                                    <span>{ev.location || t("gallery.unknownLocation")}</span>
                                     <span className="opacity-50">•</span>
-                                    <span>{ev.images.length} pictures</span>
+                                    <span>
+                                        {ev.images.length} {t("gallery.pictures")}
+                                    </span>
                                 </div>
                             </div>
 
@@ -393,7 +387,6 @@ export default function Gallery() {
                             />
                         </button>
 
-                        {/* PANEL */}
                         <div
                             className={`transition-all duration-500 overflow-hidden ${
                                 isOpen ? "max-h-[9999px] opacity-100" : "max-h-0 opacity-0"
@@ -403,7 +396,7 @@ export default function Gallery() {
                                 {ev.images.length === 0 ? (
                                     <div className="py-10 text-center text-slate-400">
                                         <div className="text-4xl mb-3">📷</div>
-                                        <p>No images for this event.</p>
+                                        <p>{t("gallery.noImages")}</p>
                                     </div>
                                 ) : (
                                     <PanelImages images={ev.images} onOpen={openLightbox} />
@@ -416,11 +409,15 @@ export default function Gallery() {
 
             {/* LOAD MORE SENTINEL */}
             {hasMore && (
-                <div
-                    ref={sentinelRef}
-                    className="py-10 flex justify-center items-center"
-                >
+                <div ref={sentinelRef} className="py-10 flex justify-center items-center">
                     <GoldSpinner size={36} />
+                </div>
+            )}
+
+            {!loadingYears && !loadingMonths && events.length === 0 && (
+                <div className="py-16 text-center text-slate-400">
+                    <div className="text-4xl mb-3">🎻</div>
+                    <p>{t("gallery.noEvents")}</p>
                 </div>
             )}
 

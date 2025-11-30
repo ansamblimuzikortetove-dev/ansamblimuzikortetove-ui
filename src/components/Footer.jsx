@@ -40,15 +40,17 @@ export default function Footer() {
             />
 
             <p className="text-slate-400 leading-relaxed text-sm max-w-xs">
-              {t("footer.description") ||
-                  "A harmonious blend of passion, precision, and tradition — bringing classical music to every generation."}
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Navigation */}
-          <div className="flex flex-col md:items-center">
-            <h3 className="text-accent text-lg font-semibold mb-4">Navigation</h3>
-            <nav className="grid gap-2 text-slate-300">
+          <div className="flex flex-col md:ml-20">
+            <h3 className="text-accent text-lg font-semibold mb-4">
+              {t("footer.navigation")}
+            </h3>
+
+            <nav className="grid gap-2 text-slate-300 text-sm">
               {navLinks.map((link, i) => (
                   <Link
                       key={i}
@@ -63,14 +65,18 @@ export default function Footer() {
 
           {/* Contact + Social */}
           <div className="flex flex-col md:items-end">
-            <h3 className="text-accent text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="text-accent text-lg font-semibold mb-4">
+              {t("footer.contact")}
+            </h3>
 
-            <p className="text-slate-300 text-sm">info@orchestra.com</p>
-            <p className="text-slate-300 text-sm mt-1">+389 70 123 456</p>
+            <p className="text-slate-300 text-sm">ansamblimuzikortetove@gmail.com</p>
+            {/*<p className="text-slate-300 text-sm mt-1">+389 70 123 456</p>*/}
 
             <div className="flex gap-4 mt-6">
               <a
-                  href="#"
+                  href="https://www.facebook.com/veratetovare"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-slate-300 hover:text-accent transition text-xl"
               >
                 <FaFacebookF />
@@ -89,12 +95,13 @@ export default function Footer() {
               </a>
             </div>
           </div>
+
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-4">
           <p className="text-center text-slate-500 text-xs">
-            © {new Date().getFullYear()} Philharmonic Orchestra. All rights reserved.
+            {t("footer.rights")}
           </p>
         </div>
       </footer>

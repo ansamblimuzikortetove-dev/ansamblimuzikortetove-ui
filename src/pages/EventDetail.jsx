@@ -5,12 +5,14 @@ import React, {
     useCallback,
     useRef,
 } from "react";
-import {useParams, Link, useNavigate} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import { fetchEventById } from "../services/eventService.ts";
 import CloudImage from "../components/CloudImage";
 import LightboxGallery from "../components/LightboxGallery.jsx";
 import GoldSpinner from "../components/GoldSpinner.jsx";
 import {FiArrowLeft} from "react-icons/fi";
+import { useTranslation } from "react-i18next";
+
 
 /* ---------------- CONSTANTS ---------------- */
 const CHUNK_INITIAL = 9;
@@ -67,6 +69,7 @@ export default function EventDetail() {
     const sentinelRef = useRef(null);
     const observerRef = useRef(null);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
 
     /* ---------------- FETCH EVENT ---------------- */
@@ -192,7 +195,8 @@ export default function EventDetail() {
             group-hover:-translate-x-1
         "
                     />
-                    <span className="hidden sm:inline text-sm">Back</span>
+                    <span className="hidden sm:inline text-sm">{t("eventDetail.back")}</span>
+
                 </button>
 
                 {coverImage ? (
@@ -233,7 +237,9 @@ export default function EventDetail() {
                     {!loading && dateObj && (
                         <div
                             className="ml-auto mb-2 mr-2 sm:mr-6 bg-black/80 border border-accent/50 rounded-2xl px-3 py-2 text-center shadow-lg">
-                            <div className="text-xs text-slate-300 tracking-wide">DATE</div>
+                            <div className="text-xs text-slate-300 tracking-wide">
+                                {t("eventDetail.date")}
+                            </div>
                             <div className="text-2xl font-extrabold text-accent leading-none">
                                 {dayBadge}
                             </div>
@@ -253,7 +259,7 @@ export default function EventDetail() {
                         <div
                             className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-xl animate-fadeUp">
                             <h2 className="text-xl font-semibold mb-3 text-accent">
-                                About This Event
+                                {t("eventDetail.aboutEvent")}
                             </h2>
 
                             {loading ? (
@@ -274,8 +280,9 @@ export default function EventDetail() {
                         <div
                             className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-xl animate-fadeUp">
                             <h2 className="text-xl font-semibold mb-3 text-accent">
-                                Event Info
+                                {t("eventDetail.eventInfo")}
                             </h2>
+
 
                             {loading ? (
                                 <div className="space-y-2 animate-pulse">
@@ -289,7 +296,7 @@ export default function EventDetail() {
                                 </p>
                             ) : (
                                 <p className="text-slate-500 text-sm">
-                                    Additional program information will be announced soon.
+                                    {t("eventDetail.programComingSoon")}
                                 </p>
                             )}
                         </div>
@@ -299,48 +306,51 @@ export default function EventDetail() {
                     <aside className="space-y-4 animate-fadeUp">
                         <div className="bg-black/60 border border-white/10 rounded-2xl p-6 backdrop-blur-lg shadow-xl">
                             <h3 className="text-lg font-semibold mb-4 text-accent">
-                                Event Details
+                                {t("eventDetail.eventDetails")}
                             </h3>
+
 
                             <dl className="space-y-3 text-sm text-slate-200">
                                 <div>
-                                    <dt className="text-slate-400">Date & Time</dt>
+                                    <dt className="text-slate-400">{t("eventDetail.dateTime")}</dt>
                                     <dd className="font-medium">
-                                        {eventDateLabel || "TBA"}
+                                        {eventDateLabel || t("eventDetail.tba")}
                                     </dd>
+
                                 </div>
 
                                 <div>
-                                    <dt className="text-slate-400">Location</dt>
+                                    <dt className="text-slate-400">{t("eventDetail.location")}</dt>
                                     <dd className="font-medium">
-                                        {event?.location || "To be announced"}
+                                        {event?.location || t("eventDetail.toBeAnnounced")}
                                     </dd>
+
                                 </div>
 
-                                <div>
-                                    <dt className="text-slate-400">Document ID</dt>
-                                    <dd className="font-mono text-xs text-slate-400 break-all">
-                                        {event?.documentId}
-                                    </dd>
-                                </div>
+                                {/*<div>*/}
+                                {/*    <dt className="text-slate-400">{t("eventDetail.documentId")}</dt>*/}
+                                {/*    <dd className="font-mono text-xs text-slate-400 break-all">*/}
+                                {/*        {event?.documentId}*/}
+                                {/*    </dd>*/}
+                                {/*</div>*/}
 
-                                <div>
-                                    <dt className="text-slate-400">Created</dt>
-                                    <dd className="text-xs text-slate-400">
-                                        {event?.createdAt
-                                            ? formatDateTime(event.createdAt)
-                                            : "—"}
-                                    </dd>
-                                </div>
+                                {/*<div>*/}
+                                {/*    <dt className="text-slate-400">{t("eventDetail.created")}</dt>*/}
+                                {/*    <dd className="text-xs text-slate-400">*/}
+                                {/*        {event?.createdAt*/}
+                                {/*            ? formatDateTime(event.createdAt)*/}
+                                {/*            : "—"}*/}
+                                {/*    </dd>*/}
+                                {/*</div>*/}
 
-                                <div>
-                                    <dt className="text-slate-400">Last Updated</dt>
-                                    <dd className="text-xs text-slate-400">
-                                        {event?.updatedAt
-                                            ? formatDateTime(event.updatedAt)
-                                            : "—"}
-                                    </dd>
-                                </div>
+                                {/*<div>*/}
+                                {/*    <dt className="text-slate-400">{t("eventDetail.updated")}</dt>*/}
+                                {/*    <dd className="text-xs text-slate-400">*/}
+                                {/*        {event?.updatedAt*/}
+                                {/*            ? formatDateTime(event.updatedAt)*/}
+                                {/*            : "—"}*/}
+                                {/*    </dd>*/}
+                                {/*</div>*/}
                             </dl>
                         </div>
                     </aside>
@@ -349,7 +359,9 @@ export default function EventDetail() {
 
             {/* ---------------- GALLERY ---------------- */}
             <section className="container-max pb-10">
-                <h3 className="text-2xl font-semibold text-accent mb-4">Event Gallery</h3>
+                <h3 className="text-2xl font-semibold text-accent mb-4">
+                    {t("eventDetail.gallery")}
+                </h3>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     {visibleImages.map((img, idx) => (

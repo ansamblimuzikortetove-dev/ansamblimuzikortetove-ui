@@ -3,36 +3,170 @@
     "home": "Ballina",
     "about": "Rreth Nesh",
     "events": "Eventet",
-    "upcomingEvents": "Evente t\u00eb Ardhshme",
-    "past": "Evente t\u00eb Kaluara",
+    "upcomingEvents": "Evente të Ardhshme",
+    "past": "Evente të Kaluara",
     "reports": "Raporte",
     "gallery": "Galeria",
     "contact": "Kontakti",
     "language": "Gjuha"
   },
   "hero": {
-    "title": "P\u00ebrjetoni Simfonin\u00eb",
-    "subtitle": "Projekt modern filarmonie me React + Tailwind. S\u00eb shpejti lidhje me Strapi.",
+    "title": "Përjetoni Simfoninë",
+    "subtitle": "Projekt modern filarmonie me React + Tailwind. Së shpejti lidhje me Strapi.",
     "ctaPrimary": "Bli Bileta",
-    "ctaSecondary": "M\u00ebso M\u00eb Shum\u00eb"
+    "ctaSecondary": "Mëso Më Shumë"
   },
   "home": {
-    "upcoming": "Ngjarjet Kryesore",
-    "galleryPreview": "Paraqitja e Galeris\u00eb",
-    "ctaTitle": "Bashkohuni n\u00eb Koncertin Ton\u00eb",
-    "ctaText": "B\u00ebhuni pjes\u00eb e nj\u00eb nate t\u00eb paharrueshme. Rezervoni sot.",
-    "ctaBtn": "Rezervo Bileta"
-  },
-  "gallery": {
-    "title": "Galeria",
-    "subtitle": "Zgjidh nj\u00eb kategori. Klikimi hap nj\u00eb dritare me foto vet\u00ebm nga ajo kategori."
+    "heroTitle": "Përjetoni",
+    "heroAccent": "Simfoninë",
+    "heroSubtitle": "Bashkohuni me orkestrën tonë në një udhëtim përmes klasikëve të përjetshëm dhe kryeveprave moderne.",
+    "ctaUpcoming": "Evente të Ardhshme",
+    "ctaLearnMore": "Mëso Më Shumë",
+
+    "aboutTitle": "Rreth Orkestrës",
+    "aboutText1": "E themeluar me pasion dhe përpikëri, orkestra jonë bashkon muzikantë nga sfonda të ndryshme.",
+    "aboutText2": "Nga Bethoveni tek kompozitorët modernë, performojmë një repertor që lidh traditën me inovacionin.",
+    "aboutBtn": "Lexo Më Shumë",
+
+    "seeAll": "Shiko të gjitha",
+    "noUpcoming": "Nuk ka evente të ardhshme.",
+    "past": "Evente të Kaluara",
+    "noPast": "Nuk u gjetën evente të kaluara.",
+
+    "missionTitle": "Misioni Ynë",
+    "missionText": "Sjellja e muzikës klasike të përjetshme tek publiku modern përmes pasionit, përsosmërisë dhe inovacionit."
   },
   "reports": {
     "title": "Raporte Financiare",
-    "subtitle": "T\u00eb dh\u00ebna provuese \u2014 z\u00ebvend\u00ebsoni me Strapi.",
+    "subtitle": "Të dhëna provuese — zëvendësoni me Strapi.",
     "year": "Viti",
-    "income": "T\u00eb ardhura",
+    "income": "Të ardhura",
     "expenses": "Shpenzime",
-    "surplus": "Tepric\u00eb"
+    "surplus": "Tepricë"
+  },
+  "errors": {
+    "generic": "Diçka shkoi keq. Ju lutemi provoni përsëri.",
+    "noConnection": "Nuk ka lidhje interneti. Kontrolloni rrjetin tuaj.",
+    "invalidJson": "Serveri ktheu një përgjigje të pavlefshme.",
+    "serverError": "Serveri ktheu një gabim.",
+    "notFound": "Burimi i kërkuar nuk u gjet.",
+    "unauthorized": "Nuk jeni i autorizuar për të kryer këtë veprim.",
+    "forbidden": "Qasja është e ndaluar.",
+    "timeout": "Kërkesa zgjati shumë. Ju lutem provoni përsëri.",
+    "unexpected": "Ndodhi një gabim i papritur."
+  },
+  "footer": {
+    "description": "Ansambli Muzikor Tetovë — një ansambël i përjetshëm i përkushtuar ruajtjes së trashëgimisë kulturore përmes përsosmërisë orkestrale dhe performancave plot emocion.",
+    "navigation": "Navigimi",
+    "contact": "Kontakti",
+    "rights": "Ansambli Muzikor Tetovë — Të gjitha të drejtat e rezervuara."
+  },
+  "about": {
+    "title": "Rreth Orkestrës Tonë",
+    "intro1": "Orkestra jonë u themelua në vitin 1995 me vizionin për t’ia afruar muzikën klasike botës moderne. Ne kemi performuar në mbi 20 shtete, duke bashkëpunuar me dirigjentë dhe solistë të njohur botërorë.",
+    "intro2": "Misioni ynë është të zhvillojmë dashurinë për muzikën simfonike përmes performancave, edukimit dhe aktiviteteve kulturore.",
+
+    "missionTitle": "Misioni Ynë",
+    "missionText": "Të frymëzojmë, edukojmë dhe argëtojmë publikun përmes fuqisë së muzikës orkestrale.",
+
+    "visionTitle": "Vizioni Ynë",
+    "visionText": "Të bëhemi një simbol global i ekselencës kulturore dhe inovacionit muzikor.",
+
+    "journeyTitle": "Rrugëtimi Ynë",
+
+    "timeline": {
+      "1995": "Orkestra u themelua nga Maestro Nikola Stojanov",
+      "2005": "Performanca e parë ndërkombëtare në Vjenë",
+      "2018": "U vlerësua si Ansambli më i Mirë Simfonik në Evropë",
+      "2024": "Zgjerimi i repertorit me kompozitorë bashkëkohorë"
+    }
+  },
+  "events": {
+    "title": "Eventet",
+    "year": "Viti",
+    "loading": "Duke u ngarkuar...",
+    "selectYear": "Zgjidh vitin",
+    "noEvents": "Nuk ka evente këtë muaj",
+    "checkAnotherMonth": "Ju lutemi kontrolloni një muaj tjetër.",
+    "loadMore": "Shfaq më shumë",
+    "loadingMore": "Duke ngarkuar…",
+    "unknownLocation": "Vendndodhje e panjohur"
+  },
+  "months": {
+    "1": "Janar",
+    "2": "Shkurt",
+    "3": "Mars",
+    "4": "Prill",
+    "5": "Maj",
+    "6": "Qershor",
+    "7": "Korrik",
+    "8": "Gusht",
+    "9": "Shtator",
+    "10": "Tetor",
+    "11": "Nëntor",
+    "12": "Dhjetor"
+  },
+  "past": {
+    "title": "Performancat e Kaluara",
+    "viewDetails": "Shiko Detajet →",
+    "noEvents": "Nuk ka evente të kaluara",
+    "noEventsDesc": "Aktualisht nuk ka performanca të kaluara të regjistruara."
+  },
+  "gallery": {
+    "title": "Galeria",
+    "year": "Viti",
+    "month": "Muaji",
+    "selectYear": "Zgjidh vitin",
+    "selectMonth": "Zgjidh muajin",
+    "allMonths": "Të gjithë muajt",
+    "unknownLocation": "Vendndodhje e panjohur",
+    "pictures": "fotografi",
+    "noImages": "Nuk ka fotografi për këtë event.",
+    "noEvents": "Nuk u gjetën evente.",
+    "months": {
+      "january": "Janar",
+      "february": "Shkurt",
+      "march": "Mars",
+      "april": "Prill",
+      "may": "Maj",
+      "june": "Qershor",
+      "july": "Korrik",
+      "august": "Gusht",
+      "september": "Shtator",
+      "october": "Tetor",
+      "november": "Nëntor",
+      "december": "Dhjetor"
+    }
+  },
+  "contact": {
+    "name": "Emri",
+    "email": "Email",
+    "message": "Mesazhi",
+    "send": "Dërgo",
+
+    "placeholderName": "Emri juaj",
+    "placeholderEmail": "ju@example.com",
+    "placeholderMessage": "Si mund t'ju ndihmojmë?",
+
+    "alertDummy": "Dërgim testues. Kjo do të lidhet me Strapi më vonë.",
+    "mapTitle": "Harta e vendndodhjes"
+  },
+  "eventDetail": {
+    "back": "Kthehu",
+    "aboutEvent": "Rreth Ngjarjes",
+    "eventInfo": "Informacione për Eventin",
+    "programComingSoon": "Informacioni shtesë për programin do të publikohet së shpejti.",
+    "eventDetails": "Detajet e Eventit",
+    "dateTime": "Data & Koha",
+    "location": "Vendndodhja",
+    "documentId": "ID e Dokumentit",
+    "created": "Krijuar",
+    "updated": "Përditësuar",
+    "gallery": "Galeria e Eventit",
+    "toBeAnnounced": "Do të njoftohet",
+    "tba": "Në pritje",
+    "date": "DATA"
   }
+
+
 }

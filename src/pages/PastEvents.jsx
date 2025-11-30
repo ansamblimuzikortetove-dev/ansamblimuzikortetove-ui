@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { fetchEvents } from "../services/eventService.ts";
 import CloudImage from "../components/CloudImage";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import GoldSpinner from "../components/GoldSpinner.jsx";
 
 const PAGE_SIZE = 2;
@@ -19,8 +19,7 @@ export default function PastEvents() {
     const [events, setEvents] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-    const { i18n } = useTranslation();
-
+    const { t, i18n } = useTranslation();
 
     const loadingRef = useRef(null);
     const isFetching = useRef(false);
@@ -54,10 +53,10 @@ export default function PastEvents() {
                     timeZone: "UTC",
                 }),
                 image: it.cover?.url || "",
-                location: it.location,
+                location: it.location || t("events.unknownLocation"),
             }));
 
-            setEvents(prev => [...prev, ...mapped]);
+            setEvents((prev) => [...prev, ...mapped]);
             setInitialized(true);
             const meta = res.meta?.pagination;
             if (!meta || meta.page >= meta.pageCount) setHasMore(false);
@@ -68,14 +67,9 @@ export default function PastEvents() {
         isFetching.current = false;
     }, [page, hasMore, i18n.language]);
 
-
-    console.log(i18n.language)
-
     useEffect(() => {
         loadEvents();
     }, [loadEvents]);
-
-
 
     useEffect(() => {
         isFetching.current = false;
@@ -83,8 +77,6 @@ export default function PastEvents() {
         setPage(1);
         setHasMore(true);
     }, [i18n.language]);
-
-
 
     // FALLBACK FAST SCROLL
     useEffect(() => {
@@ -141,7 +133,7 @@ export default function PastEvents() {
     return (
         <section className="container-max py-20 relative">
             <h1 className="text-4xl font-bold text-accent text-center mb-16">
-                Past Performances
+                {t("past.title")}
             </h1>
             {events.length === 0 && hasMore && (
                 <div className="py-20 flex justify-center">
@@ -217,10 +209,10 @@ export default function PastEvents() {
                                             </p>
                                         </div>
 
-                                        {/* View Details ALWAYS stays inside */}
+                                        {/* View Details */}
                                         <span className="inline-block mt-4 text-sm font-semibold text-accent opacity-90 group-hover:text-accent transition">
-                                            View Details →
-                                        </span>
+                      {t("past.viewDetails")}
+                    </span>
                                     </div>
                                 </div>
                             </Link>
@@ -235,6 +227,20 @@ export default function PastEvents() {
                     className="py-14 flex justify-center items-center"
                 >
                     <GoldSpinner size={34} />
+                </div>
+            )}
+            {/* NO EVENTS FOUND */}
+            {events.length === 0 && !hasMore && (
+                <div className="py-24 flex flex-col items-center text-center opacity-0 animate-fadeUp">
+                    <div className="text-6xl mb-4">🎻</div>
+
+                    <h2 className="text-2xl font-semibold text-accent">
+                        {t("past.noEvents")}
+                    </h2>
+
+                    <p className="text-slate-400 mt-2 max-w-md">
+                        {t("past.noEventsDesc")}
+                    </p>
                 </div>
             )}
 

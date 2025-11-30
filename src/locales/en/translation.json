@@ -17,15 +17,24 @@
     "ctaSecondary": "Learn More"
   },
   "home": {
-    "upcoming": "Upcoming Highlights",
-    "galleryPreview": "Gallery Preview",
-    "ctaTitle": "Join Our Next Concert",
-    "ctaText": "Be part of a night to remember. Reserve your seat today.",
-    "ctaBtn": "Reserve Tickets"
-  },
-  "gallery": {
-    "title": "Gallery",
-    "subtitle": "Select a category to view images. Clicking an image opens a fullscreen slider limited to that category."
+    "heroTitle": "Experience the",
+    "heroAccent": "Symphony",
+    "heroSubtitle": "Join our orchestra on a journey through timeless classics and modern masterpieces.",
+    "ctaUpcoming": "Upcoming Events",
+    "ctaLearnMore": "Learn More",
+
+    "aboutTitle": "About the Orchestra",
+    "aboutText1": "Founded with passion and precision, our orchestra unites musicians from diverse backgrounds.",
+    "aboutText2": "From Beethoven to contemporary composers, we perform a repertoire that bridges tradition and innovation.",
+    "aboutBtn": "Read More",
+
+    "seeAll": "See all",
+    "noUpcoming": "No upcoming events.",
+    "past": "Past Events",
+    "noPast": "No past events found.",
+
+    "missionTitle": "Our Mission",
+    "missionText": "Bringing timeless classical music to modern audiences through passion, excellence, and innovation."
   },
   "reports": {
     "title": "Financial Reports",
@@ -34,5 +43,134 @@
     "income": "Income",
     "expenses": "Expenses",
     "surplus": "Surplus"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "noConnection": "Network connection lost. Please check your internet.",
+    "invalidJson": "Server returned an invalid response.",
+    "serverError": "The server returned an error.",
+    "notFound": "Requested resource was not found.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "forbidden": "Access denied.",
+    "timeout": "The request took too long. Please try again.",
+    "unexpected": "An unexpected error occurred."
+  },
+  "footer": {
+    "description": "Ansambli Muzikor Tetovë — a timeless ensemble dedicated to preserving cultural heritage through orchestral excellence and heartfelt performances.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "rights": "Ansambli Muzikor Tetovë — All rights reserved."
+  },
+  "about": {
+    "title": "About Our Orchestra",
+    "intro1": "Our orchestra was founded in 1995 with a vision to bring classical music closer to the modern world. We’ve performed in over 20 countries, collaborating with world-renowned conductors and soloists.",
+    "intro2": "Our mission is to foster a love of symphonic music through performances, education, and outreach.",
+
+    "missionTitle": "Our Mission",
+    "missionText": "To inspire, educate, and entertain audiences through the power of live orchestral music.",
+
+    "visionTitle": "Our Vision",
+    "visionText": "To become a global symbol of cultural excellence and musical innovation.",
+
+    "journeyTitle": "Our Journey",
+
+    "timeline": {
+      "1995": "Orchestra founded by Maestro Nikola Stojanov",
+      "2005": "First international performance in Vienna",
+      "2018": "Awarded Best Symphony Ensemble in Europe",
+      "2024": "Expanded repertoire with contemporary composers"
+    }
+  },
+  "events": {
+    "title": "Events",
+    "year": "Year",
+    "loading": "Loading...",
+    "selectYear": "Select year",
+    "noEvents": "No events this month",
+    "checkAnotherMonth": "Please check another month.",
+    "loadMore": "Load More",
+    "loadingMore": "Loading…",
+    "unknownLocation": "Unknown location"
+  },
+  "months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  },
+  "past": {
+    "title": "Past Performances",
+    "viewDetails": "View Details →",
+    "noEvents": "No past events available",
+    "noEventsDesc": "There are no past performances recorded at the moment."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "year": "Year",
+    "month": "Month",
+    "selectYear": "Select year",
+    "selectMonth": "Select month",
+    "allMonths": "All Months",
+    "unknownLocation": "Unknown Location",
+    "pictures": "pictures",
+    "noImages": "No images for this event.",
+    "noEvents": "No events found.",
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+
+    "placeholderName": "Your name",
+    "placeholderEmail": "you@example.com",
+    "placeholderMessage": "How can we help?",
+
+    "alertDummy": "Dummy submit. This will be connected to Strapi later.",
+    "mapTitle": "Location Map"
+  },
+  "eventDetail": {
+    "back": "Back",
+    "aboutEvent": "About This Event",
+    "eventInfo": "Event Info",
+    "programComingSoon": "Additional program information will be announced soon.",
+    "eventDetails": "Event Details",
+    "dateTime": "Date & Time",
+    "location": "Location",
+    "documentId": "Document ID",
+    "created": "Created",
+    "updated": "Last Updated",
+    "gallery": "Event Gallery",
+    "toBeAnnounced": "To be announced",
+    "tba": "TBA",
+    "date": "DATE"
   }
+
+
+
+
+
+
 }

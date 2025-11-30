@@ -24,10 +24,9 @@ function getUrl(u) {
     return `${import.meta.env.VITE_API_URL}${u}`;
 }
 
-function monthLabel(m) {
-    return new Date(2025, m - 1, 1).toLocaleDateString(undefined, {
-        month: "long",
-    });
+function monthLabel(m, t) {
+    const key = `months.${m}`;
+    return t(key);
 }
 
 function getUtcMonthRange(year, month) {
@@ -41,7 +40,7 @@ function getUtcMonthRange(year, month) {
 ———————————————————— */
 
 export default function Events() {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
@@ -172,25 +171,25 @@ export default function Events() {
             {/* HEADER + YEAR SELECT */}
             <div className="flex justify-between items-center mb-8 px-2">
                 <h1 className="h-serif text-3xl font-bold text-accent animate-fadeDown">
-                    Events
+                    {t("events.title")}
                 </h1>
 
                 <SelectInput
                     key={year}
-                    label="Year"
+                    label={t("events.year")}
                     value={year}
                     onChange={(e) => {
                         const y = Number(e.target.value);
                         setYear(y);
                         setMonthsData({});
                     }}
-                    loading={loadingYears} // NEW ✔
+                    loading={loadingYears}
                     options={
                         loadingYears
                             ? []
                             : yearOptions.map((y) => ({ label: y, value: y }))
                     }
-                    placeholder={loadingYears ? "Loading..." : "Select year"}
+                    placeholder={loadingYears ? t("events.loading") : t("events.selectYear")}
                     className="w-32"
                 />
             </div>
@@ -219,7 +218,7 @@ export default function Events() {
                                        hover:bg-white/5 transition group"
                         >
                             <span className="h-serif text-xl font-medium group-hover:text-accent transition">
-                                {monthLabel(month)} {year}
+                                {monthLabel(month, t)} {year}
                             </span>
 
                             <FiChevronDown
@@ -239,6 +238,7 @@ export default function Events() {
                             }`}
                         >
                             <div className="p-4 sm:p-6 space-y-6">
+
                                 {/* LOADING FIRST EVENTS */}
                                 {!data?.events && data?.open && (
                                     <div className="py-12 flex justify-center">
@@ -251,10 +251,10 @@ export default function Events() {
                                     <div className="py-16 flex flex-col items-center">
                                         <div className="text-accent text-5xl mb-4">🎻</div>
                                         <h3 className="text-xl font-semibold mb-2">
-                                            No events this month
+                                            {t("events.noEvents")} {/* 🔥 NEW */}
                                         </h3>
                                         <p className="text-slate-400 text-sm">
-                                            Please check another month.
+                                            {t("events.checkAnotherMonth")} {/* 🔥 NEW */}
                                         </p>
                                     </div>
                                 )}
@@ -285,18 +285,15 @@ export default function Events() {
             disabled:opacity-60 disabled:cursor-not-allowed
         "
                                     >
-                                        {/* GOLD GLOW EFFECT */}
-                                        <span className="absolute inset-0 rounded-full bg-accent/10 blur-xl opacity-0 group-hover:opacity-20 transition pointer-events-none"></span>
 
-                                        {/* CONDITIONAL SPINNER */}
                                         {data?.buttonLoading ? (
                                             <div className="flex items-center gap-2">
                                                 <GoldSpinner size={18} />
-                                                <span>Loading…</span>
+                                                <span>{t("events.loadingMore")}</span> {/* 🔥 NEW */}
                                             </div>
                                         ) : (
                                             <div className="flex items-center gap-2">
-                                                <span>Load More</span>
+                                                <span>{t("events.loadMore")}</span> {/* 🔥 NEW */}
                                                 <FiChevronDown size={18} className="text-accent" />
                                             </div>
                                         )}
@@ -324,6 +321,8 @@ export default function Events() {
 —————————————————————————— */
 
 function EventCard({ event: e, idx }) {
+    const { t } = useTranslation();
+
     const d = new Date(e.date);
     const day = d.getUTCDate();
     const monthShort = d
@@ -361,7 +360,7 @@ function EventCard({ event: e, idx }) {
                 <div className="p-4">
                     <h3 className="font-semibold text-lg line-clamp-1">{e.title}</h3>
                     <p className="text-sm text-slate-400 mt-1 line-clamp-1">
-                        {e.location || "Unknown location"}
+                        {e.location || t("events.unknownLocation")}
                     </p>
                 </div>
             </Link>
