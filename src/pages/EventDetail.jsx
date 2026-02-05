@@ -93,12 +93,10 @@ export default function EventDetail() {
         }));
 
     const videos =
-        event?.eventVideos?.length && event.videoThumbnail
+        event?.eventVideos?.length
             ? event.eventVideos.map((v) => ({
                 type: "video",
-                src:
-                    event.videoThumbnail.formats?.thumbnail?.url ||
-                    event.videoThumbnail.url,
+                src: v.thumbnail?.formats?.thumbnail?.url || v.thumbnail?.url,
                 videoUrl: v.url,
             }))
             : [];

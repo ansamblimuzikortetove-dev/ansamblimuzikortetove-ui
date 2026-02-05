@@ -245,10 +245,14 @@ export default function Gallery() {
             sort: "date:desc",
             filters,
             populate: {
-                images: { fields: ["url", "alternativeText", "formats", "name"] },
-                eventVideos: { fields: ["url"] },
-                videoThumbnail: { fields: ["url", "formats"] },
-            },
+                images: { fields: ["url", "alternativeText", "name"] },
+                eventVideos: {
+                    fields: ["url"],
+                    populate: { thumbnail: { fields: ["url", "alternativeText", "name"] } },
+                },
+            }
+
+
         });
 
         if (res?.data?.length) {
@@ -262,12 +266,10 @@ export default function Gallery() {
                     }));
 
                 const videos =
-                    it.eventVideos?.length && it.videoThumbnail
+                    it.eventVideos?.length && it.eventVideos
                         ? it.eventVideos.map((v) => ({
                             type: "video",
-                            src:
-                                it.videoThumbnail.formats?.thumbnail?.url ||
-                                it.videoThumbnail.url,
+                            src: v.thumbnail?.formats?.thumbnail?.url || v.thumbnail?.url,
                             videoUrl: v.url,
                         }))
                         : [];

@@ -13,8 +13,10 @@ export async function fetchEvents({
                                       sort = "date:asc",
                                       populate = {
                                           cover: { fields: ["url", "alternativeText", "formats"] },
-                                          eventVideos: { fields: ["url"] },
-                                          videoThumbnail: { fields: ["url", "formats"] },
+                                          eventVideos: {
+                                              fields: ["url"],
+                                              populate: { thumbnail: { fields: ["url", "alternativeText", "name"] } },
+                                          },
                                       },
                                       filters = {},
                                   }: {
@@ -40,16 +42,23 @@ export async function fetchEvents({
 export async function fetchEventById(
     id: number | string,
     {
-        populate = "*",
-    }: {
-        populate?: any;
-    } = {}
+        populate = {
+            cover: { fields: ["url", "name", "alternativeText"] },
+            images: { fields: ["url", "name", "alternativeText"] },
+            eventVideos: {
+                fields: ["url"],
+                populate: {
+                    thumbnail: { fields: ["url", "name", "alternativeText"] }
+                }
+            }
+        },
+    }: { populate?: any } = {}
 ) {
     const params = { populate };
-    // ✅ Returns { data }
     const res = await get(`/events/${id}`, params);
-    return res.data
+    return res.data;
 }
+
 
 export async function fetchTestEventYears() {
     // No params needed — simple GET
@@ -83,8 +92,10 @@ export async function fetchTestEventsByMonth(
         locale,
         populate: {
             images: { fields: ["url", "formats", "name"] },
-            eventVideos: { fields: ["url"] },
-            videoThumbnail: { fields: ["url", "formats"] },
+            eventVideos: {
+                fields: ["url"],
+                populate: { thumbnail: { fields: ["url", "alternativeText", "name"] } },
+            },
         },
     };
 
