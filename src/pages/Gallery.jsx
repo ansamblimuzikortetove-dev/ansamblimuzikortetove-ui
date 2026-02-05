@@ -63,55 +63,72 @@ function useChunkedImages(all = []) {
     };
 }
 
-function PanelImages({ images, onOpen }) {
-    const { visibleImages, hasMore, load, reset } = useChunkedImages(images);
+function PanelImages({ media, onOpenImage }) {
+    const imagesOnly = media.filter((m) => m.type === "image");
+    const { visibleImages, hasMore, load, reset } = useChunkedImages(media);
     const sentinelRef = useRef(null);
 
-    useEffect(() => {
-        reset();
-    }, [images]);
+    useEffect(() => reset(), [media]);
 
     useEffect(() => {
         if (!sentinelRef.current) return;
 
         const obs = new IntersectionObserver(
-            (entries) => {
-                const isVisible = entries[0].isIntersecting;
-                if (isVisible && hasMore) load();
-            },
+            (entries) => entries[0].isIntersecting && hasMore && load(),
             { rootMargin: "400px" }
         );
 
         obs.observe(sentinelRef.current);
         return () => obs.disconnect();
-    }, [visibleImages.length, hasMore, load]);
+    }, [hasMore, load]);
 
     return (
         <div className="max-h-[70vh] overflow-auto pr-1">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {visibleImages.map((img, idx) => (
-                    <button
-                        key={img.id || idx}
-                        type="button"
-                        onClick={() => onOpen(images, idx)}
-                        className="rounded-lg overflow-hidden shadow bg-black/20 hover:scale-[1.02] transition"
-                    >
+                {visibleImages.map((item, idx) =>
+                    item.type === "image" ? (
+                        <button
+                            key={idx}
+                            type="button"
+                            onClick={() => {
+                                const imageIndex = imagesOnly.findIndex(
+                                    (img) => img.full === item.full
+                                );
+                                onOpenImage(imagesOnly, imageIndex);
+                            }}
+                            className="rounded-lg overflow-hidden shadow bg-black/20 hover:scale-[1.02] transition"
+                        >
+
                         <CloudImage
-                            src={getUrl(img.url)}
-                            alt={img.name || ""}
-                            placeholder={
-                                img.formats?.thumbnail?.url &&
-                                getUrl(img.formats.thumbnail.url)
-                            }
-                            className="w-full h-48 object-cover"
-                        />
-                    </button>
-                ))}
+                                src={item.src}
+                                className="w-full h-48 object-cover"
+                            />
+                        </button>
+                    ) : (
+                        <a
+                            key={idx}
+                            href={item.videoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative rounded-lg overflow-hidden shadow group"
+                        >
+                            <CloudImage
+                                src={item.src}
+                                className="w-full h-48 object-cover opacity-80"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="bg-black/60 p-4 rounded-full text-white text-2xl">
+                                    ▶
+                                </div>
+                            </div>
+                        </a>
+                    )
+                )}
             </div>
 
-            <div ref={sentinelRef} className="text-center py-2">
+            <div ref={sentinelRef} className="py-2 text-center">
                 {hasMore && (
-                    <div className="w-6 h-6 mx-auto border-2 border-yellow-400 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-6 h-6 mx-auto border-2 border-accent border-t-transparent rounded-full animate-spin" />
                 )}
             </div>
         </div>
@@ -229,17 +246,41 @@ export default function Gallery() {
             filters,
             populate: {
                 images: { fields: ["url", "alternativeText", "formats", "name"] },
+                eventVideos: { fields: ["url"] },
+                videoThumbnail: { fields: ["url", "formats"] },
             },
         });
 
         if (res?.data?.length) {
-            const mapped = res.data.map((it) => ({
-                id: it.id,
-                title: it.name,
-                date: it.date,
-                location: it.location,
-                images: it.images || [],
-            }));
+            const mapped = res.data.map((it) => {
+                const images =
+                    (it.images || []).map((img) => ({
+                        type: "image",
+                        src: img.formats?.thumbnail?.url || img.url,
+                        full: img.url,
+                        name: img.name,
+                    }));
+
+                const videos =
+                    it.eventVideos?.length && it.videoThumbnail
+                        ? it.eventVideos.map((v) => ({
+                            type: "video",
+                            src:
+                                it.videoThumbnail.formats?.thumbnail?.url ||
+                                it.videoThumbnail.url,
+                            videoUrl: v.url,
+                        }))
+                        : [];
+
+                return {
+                    id: it.id,
+                    title: it.name,
+                    date: it.date,
+                    location: it.location,
+                    media: [...images, ...videos],
+                };
+            });
+
 
             flushSync(() => {
                 setEvents((prev) => [...prev, ...mapped]);
@@ -289,16 +330,18 @@ export default function Gallery() {
 
     /* -------------------- LIGHTBOX -------------------- */
 
-    const openLightbox = (imgs, index) => {
+    const openLightbox = (images, index) => {
         setLbSlides(
-            imgs.map((img) => ({
-                src: getUrl(img.url),
+            images.map((img) => ({
+                src: img.full,
                 description: img.name || "",
             }))
         );
         setLbIndex(index);
         setLbOpen(true);
     };
+
+
 
     /* -------------------- UI -------------------- */
 
@@ -374,7 +417,7 @@ export default function Gallery() {
                                     <span>{ev.location || t("gallery.unknownLocation")}</span>
                                     <span className="opacity-50">•</span>
                                     <span>
-                                        {ev.images.length} {t("gallery.pictures")}
+                                        {ev.media.length} {t("gallery.pictures")}
                                     </span>
                                 </div>
                             </div>
@@ -393,13 +436,13 @@ export default function Gallery() {
                             }`}
                         >
                             <div className="p-5">
-                                {ev.images.length === 0 ? (
+                                {ev.media.length === 0 ? (
                                     <div className="py-10 text-center text-slate-400">
                                         <div className="text-4xl mb-3">📷</div>
                                         <p>{t("gallery.noImages")}</p>
                                     </div>
                                 ) : (
-                                    <PanelImages images={ev.images} onOpen={openLightbox} />
+                                    <PanelImages media={ev.media} onOpenImage={openLightbox} />
                                 )}
                             </div>
                         </div>

@@ -84,10 +84,29 @@ export default function EventDetail() {
     const loading = !event;
 
     /* ---------------- GALLERY SETUP ---------------- */
-    const images = event?.images || [];
-    const { visibleImages, hasMore, loadMore, reset } = useChunkedImages(images);
+    const images =
+        (event?.images || []).map((img) => ({
+            type: "image",
+            src: img.formats?.thumbnail?.url || img.url,
+            full: img.url,
+            name: img.name,
+        }));
 
-    useEffect(() => reset(), [images]);
+    const videos =
+        event?.eventVideos?.length && event.videoThumbnail
+            ? event.eventVideos.map((v) => ({
+                type: "video",
+                src:
+                    event.videoThumbnail.formats?.thumbnail?.url ||
+                    event.videoThumbnail.url,
+                videoUrl: v.url,
+            }))
+            : [];
+
+    const media = [...images, ...videos];
+    const { visibleImages, hasMore, loadMore, reset } = useChunkedImages(media);
+
+    useEffect(() => reset(), [media]);
 
     /* ---------------- SCROLL OBSERVER (FIXED) ---------------- */
     useEffect(() => {
@@ -120,18 +139,19 @@ export default function EventDetail() {
     const [lbIndex, setLbIndex] = useState(0);
     const [lbSlides, setLbSlides] = useState([]);
 
-    const openLightbox = useCallback(
-        (idx) => {
-            const slides = images.map((img) => ({
-                src: getImageUrl(img),
+    const openLightbox = (idx) => {
+        const imagesOnly = media.filter((m) => m.type === "image");
+
+        setLbSlides(
+            imagesOnly.map((img) => ({
+                src: img.full,
                 description: img.name,
-            }));
-            setLbSlides(slides);
-            setLbIndex(idx);
-            setLbOpen(true);
-        },
-        [images]
-    );
+            }))
+        );
+
+        setLbIndex(idx);
+        setLbOpen(true);
+    };
 
     /* ---------------- SKELETON ---------------- */
     if (loading) {
@@ -364,19 +384,40 @@ export default function EventDetail() {
                 </h3>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {visibleImages.map((img, idx) => (
-                        <button
-                            key={img.id || idx}
-                            onClick={() => openLightbox(idx)}
-                            className="rounded-xl overflow-hidden bg-white/10 hover:bg-white/20 transition shadow-lg hover:-translate-y-1"
-                        >
-                            <CloudImage
-                                src={getImageUrl(img)}
-                                alt={img.name}
-                                className="w-full h-48 object-cover"
-                            />
-                        </button>
-                    ))}
+                    {visibleImages.map((item, idx) =>
+                        item.type === "image" ? (
+                            <button
+                                key={idx}
+                                onClick={() => openLightbox(idx)}
+                                className="rounded-xl overflow-hidden hover:-translate-y-1 transition"
+                            >
+                                <CloudImage
+                                    src={item.src}
+                                    className="w-full h-48 object-cover"
+                                />
+                            </button>
+                        ) : (
+                            <a
+                                key={idx}
+                                href={item.videoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative rounded-xl overflow-hidden"
+                            >
+                                <CloudImage
+                                    src={item.src}
+                                    className="w-full h-48 object-cover opacity-80"
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="bg-black/60 p-4 rounded-full text-white text-2xl">
+                                        ▶
+                                    </div>
+                                </div>
+                            </a>
+                        )
+                    )}
+
+
                 </div>
 
                 <div ref={sentinelRef}>

@@ -13,6 +13,8 @@ export async function fetchEvents({
                                       sort = "date:asc",
                                       populate = {
                                           cover: { fields: ["url", "alternativeText", "formats"] },
+                                          eventVideos: { fields: ["url"] },
+                                          videoThumbnail: { fields: ["url", "formats"] },
                                       },
                                       filters = {},
                                   }: {
@@ -80,9 +82,9 @@ export async function fetchTestEventsByMonth(
         month,
         locale,
         populate: {
-            images: {
-                fields: ["url", "alternativeText", "formats", "name"],
-            },
+            images: { fields: ["url", "formats", "name"] },
+            eventVideos: { fields: ["url"] },
+            videoThumbnail: { fields: ["url", "formats"] },
         },
     };
 
