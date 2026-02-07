@@ -101,7 +101,26 @@ export default function EventDetail() {
             }))
             : [];
 
-    const media = [...images, ...videos];
+    const media = useMemo(() => {
+        const images =
+            (event?.images || []).map((img) => ({
+                type: "image",
+                src: img.formats?.thumbnail?.url || img.url,
+                full: img.url,
+                name: img.name,
+            }));
+
+        const videos =
+            event?.eventVideos?.length
+                ? event.eventVideos.map((v) => ({
+                    type: "video",
+                    src: v.thumbnail?.formats?.thumbnail?.url || v.thumbnail?.url,
+                    videoUrl: v.url,
+                }))
+                : [];
+
+        return [...images, ...videos];
+    }, [event]);
     const { visibleImages, hasMore, loadMore, reset } = useChunkedImages(media);
 
     useEffect(() => reset(), [media]);
