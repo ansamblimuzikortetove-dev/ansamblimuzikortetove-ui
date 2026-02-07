@@ -84,23 +84,6 @@ export default function EventDetail() {
     const loading = !event;
 
     /* ---------------- GALLERY SETUP ---------------- */
-    const images =
-        (event?.images || []).map((img) => ({
-            type: "image",
-            src: img.formats?.thumbnail?.url || img.url,
-            full: img.url,
-            name: img.name,
-        }));
-
-    const videos =
-        event?.eventVideos?.length
-            ? event.eventVideos.map((v) => ({
-                type: "video",
-                src: v.thumbnail?.formats?.thumbnail?.url || v.thumbnail?.url,
-                videoUrl: v.url,
-            }))
-            : [];
-
     const media = useMemo(() => {
         const images =
             (event?.images || []).map((img) => ({
