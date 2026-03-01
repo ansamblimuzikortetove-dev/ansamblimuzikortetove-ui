@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import EventDetail from "./pages/EventDetail.jsx";
 import { Toaster } from "react-hot-toast";
 import AppErrorBoundary from "./components/AppErrorBoundary.jsx";
+import Statut from "./pages/Statut.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "reports", element: <Reports /> },
       { path: "gallery", element: <Gallery /> },
       { path: "contact", element: <Contact /> },
+      { path: "statut", element: <Statut /> }
     ],
   },
 ]);

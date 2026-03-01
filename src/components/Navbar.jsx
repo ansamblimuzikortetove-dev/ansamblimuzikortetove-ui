@@ -19,6 +19,7 @@ const links = [
   { to: "/reports", key: "reports" },
   { to: "/gallery", key: "gallery" },
   { to: "/contact", key: "contact" },
+  { to: "/statut", key: "statut" },
 ];
 
 const langs = [

@@ -8,7 +8,8 @@
     "reports": "Raporte",
     "gallery": "Galeria",
     "contact": "Kontakti",
-    "language": "Gjuha"
+    "language": "Gjuha",
+    "statut": "Statut"
   },
   "hero": {
     "title": "Përjetoni Simfoninë",
@@ -166,6 +167,11 @@
     "toBeAnnounced": "Do të njoftohet",
     "tba": "Në pritje",
     "date": "DATA"
+  },
+  "statut": {
+    "title": "Statuti",
+    "description": "Dokumenti zyrtar i statutit të institucionit.",
+    "open": "Hap Statutin"
   }
 
 

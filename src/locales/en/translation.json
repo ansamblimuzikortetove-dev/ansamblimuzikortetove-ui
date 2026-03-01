@@ -8,7 +8,8 @@
     "reports": "Reports",
     "gallery": "Gallery",
     "contact": "Contact",
-    "language": "Language"
+    "language": "Language",
+    "statut": "Statut"
   },
   "hero": {
     "title": "Experience the Symphony",
@@ -166,6 +167,11 @@
     "toBeAnnounced": "To be announced",
     "tba": "TBA",
     "date": "DATE"
+  },
+  "statut": {
+    "title": "Statute",
+    "description": "Official statute document of the institution.",
+    "open": "Open Statute"
   }
 
 
