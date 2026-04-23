@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 export default function About() {
     const { t } = useTranslation();
 
-    const TIMELINE = [
-        { year: "1995", text: t("about.timeline.1995") },
-        { year: "2005", text: t("about.timeline.2005") },
-        { year: "2018", text: t("about.timeline.2018") },
-        { year: "2024", text: t("about.timeline.2024") }
-    ];
+    // const TIMELINE = [
+    //     { year: "1995", text: t("about.timeline.1995") },
+    //     { year: "2005", text: t("about.timeline.2005") },
+    //     { year: "2018", text: t("about.timeline.2018") },
+    //     { year: "2024", text: t("about.timeline.2024") }
+    // ];
 
     return (
         <div className="container-max py-16 space-y-16">
@@ -61,25 +61,25 @@ export default function About() {
             </section>
 
             {/* Timeline */}
-            <section className="opacity-0 animate-fadeIn" style={{ animationDelay: "300ms" }}>
-                <h2 className="text-3xl font-bold text-accent mb-8 text-center">
-                    {t("about.journeyTitle")}
-                </h2>
+            {/*<section className="opacity-0 animate-fadeIn" style={{ animationDelay: "300ms" }}>*/}
+            {/*    <h2 className="text-3xl font-bold text-accent mb-8 text-center">*/}
+            {/*        {t("about.journeyTitle")}*/}
+            {/*    </h2>*/}
 
-                <div className="relative border-l border-accent/40 ml-4 space-y-8">
-                    {TIMELINE.map((tItem, i) => (
-                        <div
-                            key={i}
-                            className="ml-6 relative opacity-0 animate-fadeUp"
-                            style={{ animationDelay: `${i * 100}ms` }}
-                        >
-                            <div className="absolute -left-3 top-1 w-3 h-3 bg-accent rounded-full" />
-                            <h3 className="text-xl font-semibold text-white ml-2">{tItem.year}</h3>
-                            <p className="text-slate-400 ml-2">{tItem.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            {/*    <div className="relative border-l border-accent/40 ml-4 space-y-8">*/}
+            {/*        {TIMELINE.map((tItem, i) => (*/}
+            {/*            <div*/}
+            {/*                key={i}*/}
+            {/*                className="ml-6 relative opacity-0 animate-fadeUp"*/}
+            {/*                style={{ animationDelay: `${i * 100}ms` }}*/}
+            {/*            >*/}
+            {/*                <div className="absolute -left-3 top-1 w-3 h-3 bg-accent rounded-full" />*/}
+            {/*                <h3 className="text-xl font-semibold text-white ml-2">{tItem.year}</h3>*/}
+            {/*                <p className="text-slate-400 ml-2">{tItem.text}</p>*/}
+            {/*            </div>*/}
+            {/*        ))}*/}
+            {/*    </div>*/}
+            {/*</section>*/}
         </div>
     );
 }
