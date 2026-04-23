@@ -63,24 +63,19 @@
     "rights": "Ansambli Muzikor Tetovë — Të gjitha të drejtat e rezervuara."
   },
   "about": {
-    "title": "Rreth Orkestrës Tonë",
-    "intro1": "Orkestra jonë u themelua në vitin 1995 me vizionin për t’ia afruar muzikën klasike botës moderne. Ne kemi performuar në mbi 20 shtete, duke bashkëpunuar me dirigjentë dhe solistë të njohur botërorë.",
-    "intro2": "Misioni ynë është të zhvillojmë dashurinë për muzikën simfonike përmes performancave, edukimit dhe aktiviteteve kulturore.",
+    "title": "RRETH NESH",
 
-    "missionTitle": "Misioni Ynë",
-    "missionText": "Të frymëzojmë, edukojmë dhe argëtojmë publikun përmes fuqisë së muzikës orkestrale.",
+    "intro1": "Ansambli Muzikor në Republikën e Maqedonisë së Veriut – Tetovë është institucion nacional i themeluar në vitin 2023, me qëllim zhvillimin dhe promovimin e artit muzikor në nivel profesional dhe institucional. Si një strukturë e re në skenën kulturore, Ansambli ka sjellë një frymë të re në jetën artistike të Tetovës dhe rajonit të Pollogut, duke ofruar programe cilësore dhe duke aktivizuar një publik të gjerë.",
 
-    "visionTitle": "Vizioni Ynë",
-    "visionText": "Të bëhemi një simbol global i ekselencës kulturore dhe inovacionit muzikor.",
+    "intro2": "Që nga themelimi, Ansambli është afirmuar si një platformë e rëndësishme për interpretimin e muzikës klasike dhe bashkëkohore, duke bashkuar artistë të profilit të lartë dhe duke krijuar hapësirë për bashkëpunime kreative. Përmes koncerteve dhe projekteve të ndryshme muzikore-skenike, ai kontribuon në decentralizimin e kulturës dhe në forcimin e identitetit artistik në nivel kombëtar.",
 
-    "journeyTitle": "Rrugëtimi Ynë",
+    "missionTitle": "MISIONI",
+    "missionText": "Të zhvillojë dhe promovojë artin muzikor përmes programeve profesionale dhe inovative, duke krijuar mundësi për artistët dhe duke ofruar përvoja cilësore për publikun. Ansambli synon të jetë një urë lidhëse mes traditës dhe krijimtarisë bashkëkohore, duke nxitur dialog kulturor dhe duke kontribuar në pasurimin e jetës artistike në vend.",
 
-    "timeline": {
-      "1995": "Orkestra u themelua nga Maestro Nikola Stojanov",
-      "2005": "Performanca e parë ndërkombëtare në Vjenë",
-      "2018": "U vlerësua si Ansambli më i Mirë Simfonik në Evropë",
-      "2024": "Zgjerimi i repertorit me kompozitorë bashkëkohorë"
-    }
+    "visionTitle": "VIZIONI",
+    "visionText": "Të shndërrohet në një qendër të rëndësishme muzikore në rajon dhe më gjerë, e njohur për ekselencë artistike, bashkëpunime ndërkombëtare dhe ndikim të qëndrueshëm në zhvillimin e kulturës. Ansambli synon të jetë një institucion modern, i hapur dhe gjithëpërfshirës, që formëson të ardhmen e skenës muzikore në Republikën e Maqedonisë së Veriut.",
+
+    "journeyTitle": "Rrugëtimi Ynë"
   },
   "events": {
     "title": "Eventet",

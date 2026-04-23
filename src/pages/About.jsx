@@ -23,11 +23,11 @@ export default function About() {
                         {t("about.title")}
                     </h1>
 
-                    <p className="text-slate-300 leading-relaxed">
+                    <p className="text-slate-300 leading-relaxed whitespace-pre-line">
                         {t("about.intro1")}
                     </p>
 
-                    <p className="text-slate-400 mt-4">
+                    <p className="text-slate-400 mt-4 leading-relaxed whitespace-pre-line">
                         {t("about.intro2")}
                     </p>
                 </div>

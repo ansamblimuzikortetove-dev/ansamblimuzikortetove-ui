@@ -63,24 +63,19 @@
     "rights": "Ansambli Muzikor Tetovë — All rights reserved."
   },
   "about": {
-    "title": "About Our Orchestra",
-    "intro1": "Our orchestra was founded in 1995 with a vision to bring classical music closer to the modern world. We’ve performed in over 20 countries, collaborating with world-renowned conductors and soloists.",
-    "intro2": "Our mission is to foster a love of symphonic music through performances, education, and outreach.",
+    "title": "ABOUT US",
 
-    "missionTitle": "Our Mission",
-    "missionText": "To inspire, educate, and entertain audiences through the power of live orchestral music.",
+    "intro1": "The National Institution Musical Ensemble of the Republic of North Macedonia – Tetovo is a national institution established in 2023, with the aim of developing and promoting musical art at a professional and institutional level. As a new presence on the cultural scene, the Ensemble has brought fresh energy to the artistic life of Tetovo and the Polog region, offering high-quality programs and engaging a wide audience.",
 
-    "visionTitle": "Our Vision",
-    "visionText": "To become a global symbol of cultural excellence and musical innovation.",
+    "intro2": "Since its establishment, the Ensemble has positioned itself as an important platform for the performance of classical and contemporary music, bringing together distinguished artists and creating space for creative collaborations. Through concerts and various music-stage projects, it contributes to the decentralization of culture and the strengthening of artistic identity at the national level.",
 
-    "journeyTitle": "Our Journey",
+    "missionTitle": "MISSION",
+    "missionText": "To develop and promote musical art through professional and innovative programs, creating opportunities for artists and delivering high-quality experiences for audiences. The Ensemble aims to serve as a bridge between tradition and contemporary creativity, fostering cultural dialogue and enriching artistic life in the country.",
 
-    "timeline": {
-      "1995": "Orchestra founded by Maestro Nikola Stojanov",
-      "2005": "First international performance in Vienna",
-      "2018": "Awarded Best Symphony Ensemble in Europe",
-      "2024": "Expanded repertoire with contemporary composers"
-    }
+    "visionTitle": "VISION",
+    "visionText": "To become a leading musical center in the region and beyond, recognized for artistic excellence, international collaboration, and a lasting impact on cultural development. The Ensemble strives to be a modern, open, and inclusive institution that shapes the future of the music scene in the Republic of North Macedonia.",
+
+    "journeyTitle": "Our Journey"
   },
   "events": {
     "title": "Events",
