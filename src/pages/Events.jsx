@@ -45,11 +45,16 @@ export default function Events() {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
 
+    function getFirstAvailableMonth(selectedYear) {
+        if (selectedYear > currentYear) return 1;
+        return currentMonth;
+    }
+
     const [monthsData, setMonthsData] = useState({});
     const monthRefs = useRef({});
 
     const [yearOptions, setYearOptions] = useState([]);
-    const [year, setYear] = useState(currentYear);
+    const [year, setYear] = useState(null);
     const [loadingYears, setLoadingYears] = useState(true);
 
     /* ——— Load years ——— */
@@ -61,13 +66,20 @@ export default function Events() {
                 const years = await fetchTestEventYears(i18n.language);
 
                 if (years.length) {
-                    setYearOptions(
-                        years
-                            .sort((a, b) => a - b)
-                            .filter((y) => y >= currentYear)
+                    const sortedYears = years.sort((a, b) => a - b);
+
+                    const validYears = sortedYears.filter(
+                        (y) => y >= currentYear
                     );
 
-                    setYear(years[0]); // default first available
+                    setYearOptions(validYears);
+
+                    const selectedYear =
+                        validYears.length > 0
+                            ? validYears[0]
+                            : sortedYears[0];
+
+                    setYear(selectedYear);
                 }
             } catch (err) {
                 console.error("Failed to load years:", err);
@@ -79,6 +91,33 @@ export default function Events() {
         setMonthsData({});
         loadYears();
     }, [i18n.language]);
+
+    useEffect(() => {
+        if (!year) return;
+
+        const firstMonth = getFirstAvailableMonth(year);
+        const key = `${year}-${firstMonth}`;
+
+        setMonthsData({
+            [key]: {
+                open: true,
+                events: null,
+                page: 1,
+                hasMore: true,
+            },
+        });
+
+        loadMonthEvents(year, firstMonth);
+
+        // optional scroll
+        setTimeout(() => {
+            monthRefs.current[key]?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }, 100);
+
+    }, [year]);
 
     /* ——— Toggle month accordion ——— */
     function toggleMonth(month) {
@@ -103,20 +142,20 @@ export default function Events() {
     /* ——— Load month events ——— */
     async function loadMonthEvents(year, month) {
         const key = `${year}-${month}`;
+
+        setMonthsData(prev => ({
+            ...prev,
+            [key]: {
+                ...prev[key],
+                buttonLoading: true
+            }
+        }));
+
         const info = monthsData[key];
         const page = info?.page || 1;
 
         const nowIso = new Date().toISOString();
         const { start, end } = getUtcMonthRange(year, month);
-
-        // set loading for button but NOT global
-        setMonthsData(prev => ({
-            ...prev,
-            [key]: {
-                ...prev[key],
-                buttonLoading: true // NEW ✔
-            }
-        }));
 
         const res = await fetchEvents({
             page,
@@ -151,7 +190,7 @@ export default function Events() {
             ...prev,
             [key]: {
                 ...prev[key],
-                buttonLoading: false,     // NEW ✔
+                buttonLoading: false,
                 loadingMore: false,
                 open: true,
                 events: [...(prev[key]?.events || []), ...mapped],
@@ -161,14 +200,10 @@ export default function Events() {
         }));
     }
 
-
-    /* ————————————————————————————————————————
-     🔥 UI STARTS HERE — FULL BEAUTIFUL VERSION
-    ————————————————————————————————————————— */
+    /* ———————————————————————————————————————— */
 
     return (
         <section className="container-max py-12 space-y-10">
-            {/* HEADER + YEAR SELECT */}
             <div className="flex justify-between items-center mb-8 px-2">
                 <h1 className="text-3xl font-bold text-accent animate-fadeDown">
                     {t("events.title")}
@@ -180,8 +215,7 @@ export default function Events() {
                     value={year}
                     onChange={(e) => {
                         const y = Number(e.target.value);
-                        setYear(y);
-                        setMonthsData({});
+                        setYear(y); // ✅ ONLY this
                     }}
                     loading={loadingYears}
                     options={
@@ -208,14 +242,11 @@ export default function Events() {
                     <div
                         key={key}
                         ref={(el) => (monthRefs.current[key] = el)}
-                        className="border border-white/10 rounded-xl bg-black/20
-                                   backdrop-blur-md shadow-xl transition-all duration-300"
+                        className="border border-white/10 rounded-xl bg-black/20 backdrop-blur-md shadow-xl transition-all duration-300"
                     >
-                        {/* HEADER */}
                         <button
                             onClick={() => toggleMonth(month)}
-                            className="w-full flex justify-between items-center px-6 py-4
-                                       hover:bg-white/5 transition group"
+                            className="w-full flex justify-between items-center px-6 py-4 hover:bg-white/5 transition group"
                         >
                             <span className="text-xl font-medium group-hover:text-accent transition">
                                 {monthLabel(month, t)} {year}
@@ -229,7 +260,6 @@ export default function Events() {
                             />
                         </button>
 
-                        {/* CONTENT */}
                         <div
                             className={`transition-all duration-500 overflow-hidden ${
                                 isOpen
@@ -239,27 +269,24 @@ export default function Events() {
                         >
                             <div className="p-4 sm:p-6 space-y-6">
 
-                                {/* LOADING FIRST EVENTS */}
                                 {!data?.events && data?.open && (
                                     <div className="py-12 flex justify-center">
                                         <GoldSpinner size={40} />
                                     </div>
                                 )}
 
-                                {/* NO EVENTS */}
                                 {data?.events && data.events.length === 0 && (
                                     <div className="py-16 flex flex-col items-center">
                                         <div className="text-accent text-5xl mb-4">🎻</div>
                                         <h3 className="text-xl font-semibold mb-2">
-                                            {t("events.noEvents")} {/* 🔥 NEW */}
+                                            {t("events.noEvents")}
                                         </h3>
                                         <p className="text-slate-400 text-sm">
-                                            {t("events.checkAnotherMonth")} {/* 🔥 NEW */}
+                                            {t("events.checkAnotherMonth")}
                                         </p>
                                     </div>
                                 )}
 
-                                {/* EVENTS GRID */}
                                 {data?.events && data.events.length > 0 && (
                                     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
                                         {data.events.map((e, idx) => (
@@ -268,40 +295,26 @@ export default function Events() {
                                     </div>
                                 )}
 
-                                {/* LOAD MORE BUTTON */}
                                 {data?.hasMore && (
                                     <button
                                         onClick={() => loadMonthEvents(year, month)}
                                         disabled={data?.buttonLoading}
-                                        className="
-            relative mx-auto px-6 py-3 rounded-full
-            flex items-center justify-center gap-3
-            bg-white/5 border border-white/10 backdrop-blur-md
-            text-white text-sm font-medium tracking-wide uppercase
-            transition-all duration-300
-            hover:bg-white/10 hover:border-white/20
-            hover:shadow-lg hover:shadow-accent/20
-            active:scale-[0.97]
-            disabled:opacity-60 disabled:cursor-not-allowed
-        "
+                                        className="relative mx-auto px-6 py-3 rounded-full flex items-center justify-center gap-3 bg-white/5 border border-white/10 backdrop-blur-md text-white text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-accent/20 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
-
                                         {data?.buttonLoading ? (
                                             <div className="flex items-center gap-2">
                                                 <GoldSpinner size={18} />
-                                                <span>{t("events.loadingMore")}</span> {/* 🔥 NEW */}
+                                                <span>{t("events.loadingMore")}</span>
                                             </div>
                                         ) : (
                                             <div className="flex items-center gap-2">
-                                                <span>{t("events.loadMore")}</span> {/* 🔥 NEW */}
+                                                <span>{t("events.loadMore")}</span>
                                                 <FiChevronDown size={18} className="text-accent" />
                                             </div>
                                         )}
                                     </button>
                                 )}
 
-
-                                {/* AUTO LOAD-MORE SPINNER */}
                                 {data?.loadingMore && (
                                     <div className="py-6 flex justify-center">
                                         <GoldSpinner size={28} />
@@ -334,8 +347,7 @@ function EventCard({ event: e, idx }) {
 
     return (
         <div
-            className="rounded-xl overflow-hidden bg-black/30 shadow-md backdrop-blur-sm
-                       transition hover:-translate-y-1 hover:shadow-gold opacity-0 animate-fadeUp"
+            className="rounded-xl overflow-hidden bg-black/30 shadow-md backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-gold opacity-0 animate-fadeUp"
             style={{ animationDelay: `${idx * 70}ms` }}
         >
             <Link to={`/events/${e.documentId}`} className="block">
