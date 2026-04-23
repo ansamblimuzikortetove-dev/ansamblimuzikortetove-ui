@@ -42,6 +42,7 @@ export async function fetchEvents({
 export async function fetchEventById(
     id: number | string,
     {
+        locale = "en",
         populate = {
             cover: { fields: ["url", "name", "alternativeText"] },
             images: { fields: ["url", "name", "alternativeText"] },
@@ -52,9 +53,13 @@ export async function fetchEventById(
                 }
             }
         },
-    }: { populate?: any } = {}
+    }: { locale?: string; populate?: any } = {}
 ) {
-    const params = { populate };
+    const params = {
+        populate,
+        locale,
+    };
+
     const res = await get(`/events/${id}`, params);
     return res.data;
 }

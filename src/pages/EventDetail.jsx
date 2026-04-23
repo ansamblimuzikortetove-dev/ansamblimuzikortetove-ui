@@ -69,16 +69,15 @@ export default function EventDetail() {
     const sentinelRef = useRef(null);
     const observerRef = useRef(null);
     const navigate = useNavigate();
-    const { t } = useTranslation();
-
+    const { t, i18n } = useTranslation();
 
     /* ---------------- FETCH EVENT ---------------- */
     useEffect(() => {
         if (!documentId) return;
         setEvent(null); // show skeleton again when navigating to new event
 
-        fetchEventById(documentId).then((res) => setEvent(res));
-    }, [documentId]);
+        fetchEventById(documentId, { locale: i18n.language })
+            .then((res) => setEvent(res));    }, [documentId, i18n.language]);
 
     /* ---------------- LOADING STATE ---------------- */
     const loading = !event;
