@@ -12,21 +12,21 @@
     "statut": "Statut"
   },
   "hero": {
-    "title": "Experience the Symphony",
-    "subtitle": "A bold, modern philharmonic starter built with React + Tailwind. Data via Strapi soon.",
-    "ctaPrimary": "Get Tickets",
+    "title": "Tetovo Musical Ensemble",
+    "subtitle": "",
+    "ctaPrimary": "Upcoming Events",
     "ctaSecondary": "Learn More"
   },
   "home": {
-    "heroTitle": "Experience the",
-    "heroAccent": "Symphony",
-    "heroSubtitle": "Join our orchestra on a journey through timeless classics and modern masterpieces.",
+    "heroTitle": "Tetovo Musical ",
+    "heroAccent": "Ensemble",
+    "heroSubtitle": "",
     "ctaUpcoming": "Upcoming Events",
     "ctaLearnMore": "Learn More",
 
-    "aboutTitle": "About the Orchestra",
-    "aboutText1": "Founded with passion and precision, our orchestra unites musicians from diverse backgrounds.",
-    "aboutText2": "From Beethoven to contemporary composers, we perform a repertoire that bridges tradition and innovation.",
+    "aboutTitle": "About Us",
+    "aboutText1": "The National Institution Musical Ensemble of the Republic of North Macedonia – Tetovo is a national institution established in 2023, with the aim of developing and promoting musical art at a professional and institutional level.",
+    "aboutText2": "As a new presence on the cultural scene, the Ensemble has brought fresh energy to the artistic life of Tetovo and the Polog region, offering high-quality programs and engaging a wide audience.",
     "aboutBtn": "Read More",
 
     "seeAll": "See all",
@@ -35,11 +35,11 @@
     "noPast": "No past events found.",
 
     "missionTitle": "Our Mission",
-    "missionText": "Bringing timeless classical music to modern audiences through passion, excellence, and innovation."
+    "missionText": "To develop and promote musical art through professional and innovative programs, creating opportunities for artists and delivering high-quality experiences for audiences."
   },
   "reports": {
     "title": "Financial Reports",
-    "subtitle": "Dummy data \u2014 replace with Strapi collections later.",
+    "subtitle": "",
     "year": "Year",
     "income": "Income",
     "expenses": "Expenses",
