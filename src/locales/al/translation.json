@@ -12,21 +12,21 @@
     "statut": "Statut"
   },
   "hero": {
-    "title": "Përjetoni Simfoninë",
-    "subtitle": "Projekt modern filarmonie me React + Tailwind. Së shpejti lidhje me Strapi.",
-    "ctaPrimary": "Bli Bileta",
+    "title": "Ansambli Muzikor Tetovë",
+    "subtitle": "",
+    "ctaPrimary": "Evente të Ardhshme",
     "ctaSecondary": "Mëso Më Shumë"
   },
   "home": {
-    "heroTitle": "Përjetoni",
-    "heroAccent": "Simfoninë",
-    "heroSubtitle": "Bashkohuni me orkestrën tonë në një udhëtim përmes klasikëve të përjetshëm dhe kryeveprave moderne.",
+    "heroTitle": "Ansambli Muzikor",
+    "heroAccent": " Tetovë",
+    "heroSubtitle": "",
     "ctaUpcoming": "Evente të Ardhshme",
     "ctaLearnMore": "Mëso Më Shumë",
 
-    "aboutTitle": "Rreth Orkestrës",
-    "aboutText1": "E themeluar me pasion dhe përpikëri, orkestra jonë bashkon muzikantë nga sfonda të ndryshme.",
-    "aboutText2": "Nga Bethoveni tek kompozitorët modernë, performojmë një repertor që lidh traditën me inovacionin.",
+    "aboutTitle": "Rreth Nesh",
+    "aboutText1": "Ansambli Muzikor në Republikën e Maqedonisë së Veriut – Tetovë është institucion nacional i themeluar në vitin 2023, me qëllim zhvillimin dhe promovimin e artit muzikor në nivel profesional dhe institucional.",
+    "aboutText2": "Si një strukturë e re në skenën kulturore, Ansambli ka sjellë një frymë të re në jetën artistike të Tetovës dhe rajonit të Pollogut, duke ofruar programe cilësore dhe duke aktivizuar një publik të gjerë.",
     "aboutBtn": "Lexo Më Shumë",
 
     "seeAll": "Shiko të gjitha",
@@ -35,11 +35,11 @@
     "noPast": "Nuk u gjetën evente të kaluara.",
 
     "missionTitle": "Misioni Ynë",
-    "missionText": "Sjellja e muzikës klasike të përjetshme tek publiku modern përmes pasionit, përsosmërisë dhe inovacionit."
+    "missionText": "Të zhvillojë dhe promovojë artin muzikor përmes programeve profesionale dhe inovative, duke krijuar mundësi për artistët dhe duke ofruar përvoja cilësore për publikun."
   },
   "reports": {
     "title": "Raporte Financiare",
-    "subtitle": "Të dhëna provuese — zëvendësoni me Strapi.",
+    "subtitle": "",
     "year": "Viti",
     "income": "Të ardhura",
     "expenses": "Shpenzime",
