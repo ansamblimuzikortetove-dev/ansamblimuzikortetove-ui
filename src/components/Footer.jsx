@@ -20,7 +20,7 @@ export default function Footer() {
     { to: "/events", label: t("nav.upcomingEvents") },
     { to: "/past-events", label: t("nav.past") },
     { to: "/gallery", label: t("nav.gallery") },
-    { to: "/reports", label: t("nav.reports") },
+    // { to: "/reports", label: t("nav.reports") },
     { to: "/contact", label: t("nav.contact") },
   ];
 
