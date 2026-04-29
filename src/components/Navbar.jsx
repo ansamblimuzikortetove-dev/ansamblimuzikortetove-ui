@@ -16,7 +16,7 @@ const links = [
       { to: "/past-events", key: "past" },
     ],
   },
-  { to: "/reports", key: "reports" },
+  // { to: "/reports", key: "reports" },
   { to: "/gallery", key: "gallery" },
   { to: "/contact", key: "contact" },
   { to: "/statut", key: "statut" },
