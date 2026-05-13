@@ -19,7 +19,14 @@ const links = [
   // { to: "/reports", key: "reports" },
   { to: "/gallery", key: "gallery" },
   { to: "/contact", key: "contact" },
-  { to: "/statut", key: "statut" },
+
+  {
+    key: "documents",
+    children: [
+      { to: "/statut", key: "statut" },
+      { to: "/yearly-program", key: "yearlyProgram" },
+    ],
+  },
 ];
 
 const langs = [

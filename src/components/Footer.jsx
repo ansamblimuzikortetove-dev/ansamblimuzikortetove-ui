@@ -70,6 +70,7 @@ export default function Footer() {
             </h3>
 
             <p className="text-slate-300 text-sm">ansamblimuzikortetove@gmail.com</p>
+            <p className="text-slate-300 text-sm">info@ansamblimuzikortetove.mk</p>
             {/*<p className="text-slate-300 text-sm mt-1">+389 70 123 456</p>*/}
 
             <div className="flex gap-4 mt-6">

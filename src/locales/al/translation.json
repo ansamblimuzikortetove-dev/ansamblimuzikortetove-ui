@@ -9,7 +9,9 @@
     "gallery": "Galeria",
     "contact": "Kontakti",
     "language": "Gjuha",
-    "statut": "Statut"
+    "statut": "Statut",
+    "documents": "Dokumentet",
+    "yearlyProgram": "Programi Vjetor"
   },
   "hero": {
     "title": "Ansambli Muzikor Tetovë",
@@ -167,7 +169,10 @@
     "title": "Statuti",
     "description": "Dokumenti zyrtar i statutit të institucionit.",
     "open": "Hap Statutin"
+  },
+  "yearlyProgram": {
+    "title": "Programi Vjetor",
+    "description": "Dokumenti zyrtar i programit vjetor të institucionit.",
+    "open": "Hap Programin Vjetor"
   }
-
-
 }

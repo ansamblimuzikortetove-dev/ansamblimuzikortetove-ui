@@ -9,7 +9,9 @@
     "gallery": "Gallery",
     "contact": "Contact",
     "language": "Language",
-    "statut": "Statut"
+    "statut": "Statut",
+    "documents": "Documents",
+    "yearlyProgram": "Yearly Program"
   },
   "hero": {
     "title": "Tetovo Musical Ensemble",
@@ -167,11 +169,10 @@
     "title": "Statute",
     "description": "Official statute document of the institution.",
     "open": "Open Statute"
+  },
+  "yearlyProgram": {
+    "title": "Yearly Program",
+    "description": "Official yearly program document of the institution.",
+    "open": "Open Yearly Program"
   }
-
-
-
-
-
-
 }

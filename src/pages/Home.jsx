@@ -5,6 +5,7 @@ import EventCard from "../components/EventCard";
 import GoldSpinner from "../components/GoldSpinner.jsx";
 import { fetchEvents } from "../services/eventService.ts";
 import bgImage from "../assets/home-bg.png";
+import ansmabliBgImage from "../assets/ansambli-home.jpeg";
 
 export default function Home() {
     const { t, i18n } = useTranslation();
@@ -168,7 +169,7 @@ export default function Home() {
                     style={{ animationDelay: "150ms" }}
                 >
                     <img
-                        src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1000&q=80"
+                        src={ansmabliBgImage}
                         alt="orchestra players"
                         className="rounded-3xl shadow-gold"
                     />
